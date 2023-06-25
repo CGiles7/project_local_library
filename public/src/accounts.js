@@ -17,19 +17,7 @@ function getTotalNumberOfBorrows(account={}, books=[]) {
   //look in account object and find account number
   //look through books array for each time account number appears in ANY book's 'borrows' array
   //total the times any book is borrowed by that account
-  //const {bookObj} = books;
-  //const {id} = account;
-  //const total = books.reduce((accumulator, bookObj) => {
-   // const {borrows} = bookObj;
-    //if (borrows.id === id) {
-     // accumulator += 1;
-     // return accumulator;
-    //}
-  //}, 0)
-  ///return total
-//}
- 
-  const {id} = account;
+ const {id} = account;
  let total = 0;
  books.forEach(({borrows}) => {
     borrows.forEach((borrowsObj) => {
