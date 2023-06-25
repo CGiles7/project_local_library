@@ -12,18 +12,12 @@ function getTotalAccountsCount(accounts) {
 
 function getBooksBorrowedCount(books=[]) {
   //returns a number(integer) that represents the number of books that are currently checked out of the libray
-  //look in the 'borrows' array of each book-if the last transaction says returned=false, push that book array to the results
-  let borrowedBooks = []; //create empty borrowedBooks array to house results
-  books.forEach((bookObj) => { //loop through books array
-    const {borrows} = bookObj; //deconstruct borrows array from each book object
-    borrows.forEach((borrowsObj) => { //loop through borrows array
-      if (borrowsObj.returned === false) { //if returned status for that book is false
-        borrowedBooks.push(bookObj); //return the book object to new array
-      }
-    })
-    return borrowedBooks; //return all objects saved to new array
-  })
-  return borrowedBooks.length; //get the total from length of new array
+  const total = books.reduce((accumulator, {borrows}) => { //create total variable that represents total number of books currently checked out, use reduce method to create a counter(accumulator)
+    if (borrows[0].returned === false) //isolate the value at the first index of the borrows array, look at returned status to see if false
+    accumulator ++; //if false add 1 to accumulator/total
+    return accumulator;
+  }, 0)
+  return total;
 }
 
 
